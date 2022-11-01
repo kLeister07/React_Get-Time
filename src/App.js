@@ -1,19 +1,21 @@
 import React, {useState} from "react";
 
 
-let clock = new Date().toLocaleTimeString([], {timeStyle: 'short'});
 
 function App() {
-const [time, setTime] = useState(clock)
+  const clock = new Date().toLocaleTimeString();
+  const [time, setTime] = useState(clock)
 
-const getTimeHandler = (event) => {
+  function getTimeHandler() {
+    const newTime = new Date().toLocaleTimeString()
+    setTime(newTime)
+    setInterval(getTimeHandler, 1000)
+  }
   
-}
-
   return (
     <div className="container">
       <h1>{time}</h1>
-      <button>Get Time</button>
+      <button onClick={getTimeHandler}>Get Time</button>
     </div>
   );
 }
